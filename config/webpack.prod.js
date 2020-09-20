@@ -20,11 +20,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 //webpack的配置文件，使用CommonJs语法暴露出去一个对象
 module.exports = {
   //配置入口文件所在的位置
-  entry: ['./src/index.html'],
-  //entry还可以按照如下方式编写
-  /*entry: {
-    haha: './src/js/app.js'
-  },*/
+  entry: ['./public/index.html'],
   //配置webpack的输出位置
   output: {
     path: resolve(__dirname, '../dist'), //输出位置
@@ -73,7 +69,7 @@ module.exports = {
       },
       //使用babel-loader解析es6语法，但是只能解析一些简单的，例如Promise就不能翻译
       {
-        test: /\.js$/,
+        test: /\.js|jsx$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -132,7 +128,7 @@ module.exports = {
   plugins: [
     //实例化一个HtmlWebpackPlugin
     new HtmlWebpackPlugin({
-      template: './src/index.html', // 以指定文件为模板创建新的HtML(1. 结构和原来一样 2. 会自动引入打包的资源)
+      template: './public/index.html', // 以指定文件为模板创建新的HtML(1. 结构和原来一样 2. 会自动引入打包的资源)
       minify: {
         removeComments: true, //移除注释
         collapseWhitespace: true, //移除空格
