@@ -14,7 +14,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //webpack的配置文件，使用CommonJs语法暴露出去一个对象
 module.exports = {
   //配置入口文件所在的位置
-  entry: ['./src/index.js'],
+  entry: ['./src/index.tsx'],
   //配置webpack的输出位置
   output: {
     path: resolve(__dirname, 'dist'), //输出位置
@@ -67,6 +67,12 @@ module.exports = {
           }
         }
       },
+      //编译ts、tsx文件
+			{
+				test: /\.tsx?$/,
+				loader: 'awesome-typescript-loader',
+				exclude: /node_modules/,
+			},
       //使用url-loader处理less文件中的图片资源
       {
         test: /\.(png|jpg|gif)$/,
@@ -106,12 +112,24 @@ module.exports = {
       template: './public/index.html', // 以指定文件为模板创建新的HtML(1. 结构和原来一样 2. 会自动引入打包的资源)
     })
   ],
+  resolve: {
+		extensions: ['.ts', '.tsx', '.js', '.json'],
+		alias: {
+			// '@component': path.resolve(__dirname, './src/component'),
+			// '@page': path.resolve(__dirname, './src/page'),
+			// '@utils': path.resolve(__dirname, './src/utils'),
+		},
+	},
   stats:{children: false}, //解决使用HtmlWebpackPlugin插件时多余提示的问题
   devServer: {
     open: true, // 自动打开浏览器
     compress: true, // 启动gzip压缩
     port: 3000, // 端口号
-    hot: true // 开启热模替换功能 HMR
+    hot: true, // 开启热模替换功能 HMR
+    overlay: {
+			//当出现编译器错误或警告时，在浏览器中显示全屏覆盖层
+			errors: true,
+		},
   },
   devtool:'cheap-module-eval-source-map'
 };

@@ -8,9 +8,9 @@
           "experimentalObjectRestSpread": true
       }
   },
-  "plugins": [
-      "react"
-  ],
+//   "plugins": [
+//       "react"
+//   ],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
       "comma-dangle": 0

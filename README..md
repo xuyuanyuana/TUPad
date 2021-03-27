@@ -9,3 +9,7 @@
 ## 运行项目
   1、yarn || npm i 
   2、yarn start || npm start
+
+
+#awesome-typescript-loader 编译ts文件
+yarn add awesome-typescript-loader --dev
