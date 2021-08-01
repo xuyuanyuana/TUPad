@@ -1,19 +1,14 @@
 import * as React  from 'react'
-import Parent from './modules/Parents'
+
+import VirtualList from './modules/VirtualList'
+import From from './modules/From'
 
 
-// 应用根组件
-class App extends React.Component{
-
-  render() {
-    return (
-      <div className='wrap'> 
-        <Parent/>
-        <span>11111</span>
-      </div>
-    )
-  }
-}
-
-
-export default App;
+export default function App() {
+  return (
+    <main>
+      {/* <VirtualList/> */}
+      <From/>
+    </main>
+  )
+};

@@ -10,6 +10,9 @@
 const {resolve} = require('path');
 //引入html-webpack-plugin，用于创建html文件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+// const { NODE_ENV } = process.env
 
 //webpack的配置文件，使用CommonJs语法暴露出去一个对象
 module.exports = {
@@ -24,14 +27,16 @@ module.exports = {
   module: {
     //所有的loader都要配置在这里,loader下载后直接声明使用即可，无需引入。
     rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
       //编译less为style样式
       {
-        test: /\.less$/,//匹配所有.less文件
+        test: /\.scss$/,//匹配所有.scss文件
         //use里的多个loader，“干活”的顺序是：从右到左的顺序
         use: [
-          'style-loader', // 根据css模块动态的生成一个style标签，将样式嵌入进去
-          'css-loader', // 将css翻译成一个CommonJs的模块
-          'less-loader' // 将less转换为css
+          'sass-loader' // 将sass转换为css
         ]
       },
       //使用eslint检查js语法
